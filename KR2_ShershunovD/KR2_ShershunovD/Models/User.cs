@@ -18,9 +18,7 @@ namespace KR2_ShershunovD.Models
         public string Name { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        public int Roleid { get; set; }
     
-        public virtual Role Role { get; set; }
         public virtual Zakaz Zakaz { get; set; }
     }
 }

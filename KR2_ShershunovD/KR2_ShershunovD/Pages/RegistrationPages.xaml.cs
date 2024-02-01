@@ -21,18 +21,18 @@ namespace KR2_ShershunovD.Pages
     /// </summary>
     public partial class RegistrationPages : Page
     {
-        User contextUser;
+        Sotrudniki contextSotrudnik;
         public RegistrationPages()
         {
             InitializeComponent();
             CBRole.ItemsSource = App.DB.Role.ToList();
-            contextUser = new User();
-            DataContext = contextUser;
+            contextSotrudnik = new Sotrudniki();
+            DataContext = contextSotrudnik;
         }
 
         private void BSave_Click(object sender, RoutedEventArgs e)
         {
-            App.DB.User.Add(contextUser);
+            App.DB.Sotrudniki.Add(contextSotrudnik);
             App.DB.SaveChanges();            
         }
 

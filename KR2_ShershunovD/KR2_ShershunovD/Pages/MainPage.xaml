@@ -9,6 +9,11 @@
       Title="MainPage">
 
     <Grid>
-        
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="BPriem" Content="Принять программиста" Click="BPriem_Click"/>
+            <Button x:Name="BSozdania" Content="Создать задачу" Click="BSozdania_Click"/>
+            <Button x:Name="BNaznachit" Content="Принять программиста" Click="BNaznachit_Click"/>
+            <Button x:Name="BSpisoc" Content="Список сотрудников" Click="BSpisoc_Click"/>
+        </StackPanel>
     </Grid>
 </Page>

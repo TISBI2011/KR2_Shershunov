@@ -11,11 +11,20 @@
     <Grid>
         <StackPanel>
             <TextBlock Text="Имя"/>
-            <TextBox Text="{Binding Name}"/>
+            <TextBox Text="{Binding FIO}"/>
             <TextBlock Text="Логин"/>
             <TextBox Text="{Binding Login}"/>
             <TextBlock Text="Пароль"/>
-            <TextBox Text="{Binding Password}"/>
+            <TextBox Text="{Binding Addres}"/>
+            <TextBlock Text="Телефон"/>
+            <TextBox Text="{Binding Passport}"/>
+            <TextBlock Text="Телефон"/>
+            <TextBox Text="{Binding Stavka}"/>
+            <TextBlock Text="Телефон"/>
+            <TextBox Text="{Binding Phone}"/>
+            <TextBlock Text="Телефон"/>
+            <TextBox Text="{Binding Phone}"/>
+
             <TextBlock Text="Роль"/>
             <ComboBox x:Name="CBRole" DisplayMemberPath="Name"
                       SelectedItem="{Binding Role}"/>

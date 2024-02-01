@@ -24,5 +24,25 @@ namespace KR2_ShershunovD.Pages
         {
             InitializeComponent();
         }
+
+        private void BPriem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BSozdania_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BNaznachit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BSpisoc_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new RegistrationPages());
+        }
     }
 }

@@ -39,6 +39,9 @@
     <EntitySetMapping Name="Sotrudniki">
       <EntityTypeMapping TypeName="KR2_ShershunovModel.Sotrudniki">
         <MappingFragment StoreEntitySet="Sotrudniki">
+          <ScalarProperty Name="Passwoed" ColumnName="Passwoed" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Roleid" ColumnName="Roleid" />
           <ScalarProperty Name="Stavka" ColumnName="Stavka" />
           <ScalarProperty Name="idOtdela" ColumnName="idOtdela" />
           <ScalarProperty Name="Passport" ColumnName="Passport" />
@@ -63,7 +66,6 @@
     <EntitySetMapping Name="User">
       <EntityTypeMapping TypeName="KR2_ShershunovModel.User">
         <MappingFragment StoreEntitySet="User">
-          <ScalarProperty Name="Roleid" ColumnName="Roleid" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Login" ColumnName="Login" />
           <ScalarProperty Name="Name" ColumnName="Name" />

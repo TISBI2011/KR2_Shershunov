@@ -42,6 +42,9 @@
     <Property Name="Passport" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="idOtdela" Type="int" Nullable="false" />
     <Property Name="Stavka" Type="float" Nullable="false" />
+    <Property Name="Roleid" Type="int" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="50" />
+    <Property Name="Passwoed" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -61,7 +64,6 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Roleid" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Zadachi">
     <Key>
@@ -156,18 +158,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_User_Role1">
-    <End Role="Role" Type="Self.Role" Multiplicity="1" />
-    <End Role="User" Type="Self.User" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Role">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="User">
-        <PropertyRef Name="Roleid" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Zakaz_Client">
     <End Role="Client" Type="Self.Client" Multiplicity="1" />
     <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="0..1" />
@@ -225,10 +215,6 @@
     <AssociationSet Name="FK_Sotrudniki_Zadachi" Association="Self.FK_Sotrudniki_Zadachi">
       <End Role="Zadachi" EntitySet="Zadachi" />
       <End Role="Sotrudniki" EntitySet="Sotrudniki" />
-    </AssociationSet>
-    <AssociationSet Name="FK_User_Role1" Association="Self.FK_User_Role1">
-      <End Role="Role" EntitySet="Role" />
-      <End Role="User" EntitySet="User" />
     </AssociationSet>
     <AssociationSet Name="FK_Zakaz_Client" Association="Self.FK_Zakaz_Client">
       <End Role="Client" EntitySet="Client" />

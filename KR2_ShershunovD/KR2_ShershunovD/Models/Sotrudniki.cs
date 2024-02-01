@@ -21,6 +21,9 @@ namespace KR2_ShershunovD.Models
         public string Passport { get; set; }
         public int idOtdela { get; set; }
         public double Stavka { get; set; }
+        public int Roleid { get; set; }
+        public string Login { get; set; }
+        public string Passwoed { get; set; }
     
         public virtual Otdel Otdel { get; set; }
         public virtual Role Role { get; set; }

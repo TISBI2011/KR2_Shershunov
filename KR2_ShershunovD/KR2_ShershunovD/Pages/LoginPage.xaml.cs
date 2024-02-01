@@ -30,7 +30,7 @@ namespace KR2_ShershunovD.Pages
             string login = TBLogin.Text;
             string password = TBPassword.Text;
 
-            var loggedUser = App.DB.User.FirstOrDefault(x => x.Login == login && x.Password == password);
+            var loggedUser = App.DB.Sotrudniki.FirstOrDefault(x => x.Login == login && x.Passwoed == password);
 
             if(loggedUser == null)
             {
@@ -42,8 +42,7 @@ namespace KR2_ShershunovD.Pages
         }
 
         private void BRegistration_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new RegistrationPages());
+        {           
         }
     }
 }

@@ -34,10 +34,6 @@
       <End Role="Role" EntitySet="Role" />
       <End Role="Sotrudniki" EntitySet="Sotrudniki" />
     </AssociationSet>
-    <AssociationSet Name="FK_User_Role1" Association="KR2_ShershunovModel.FK_User_Role1">
-      <End Role="Role" EntitySet="Role" />
-      <End Role="User" EntitySet="User" />
-    </AssociationSet>
     <AssociationSet Name="FK_Sotrudniki_Zadachi" Association="KR2_ShershunovModel.FK_Sotrudniki_Zadachi">
       <End Role="Zadachi" EntitySet="Zadachi" />
       <End Role="Sotrudniki" EntitySet="Sotrudniki" />
@@ -84,7 +80,6 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Sotrudniki" Relationship="KR2_ShershunovModel.FK_Sotrudniki_Role" FromRole="Role" ToRole="Sotrudniki" />
-    <NavigationProperty Name="User" Relationship="KR2_ShershunovModel.FK_User_Role1" FromRole="Role" ToRole="User" />
   </EntityType>
   <EntityType Name="Sotrudniki">
     <Key>
@@ -97,6 +92,9 @@
     <Property Name="Passport" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="idOtdela" Type="Int32" Nullable="false" />
     <Property Name="Stavka" Type="Double" Nullable="false" />
+    <Property Name="Roleid" Type="Int32" Nullable="false" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Passwoed" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Otdel" Relationship="KR2_ShershunovModel.FK_Sotrudniki_Otdel" FromRole="Sotrudniki" ToRole="Otdel" />
     <NavigationProperty Name="Role" Relationship="KR2_ShershunovModel.FK_Sotrudniki_Role" FromRole="Sotrudniki" ToRole="Role" />
     <NavigationProperty Name="Zadachi" Relationship="KR2_ShershunovModel.FK_Sotrudniki_Zadachi" FromRole="Sotrudniki" ToRole="Zadachi" />
@@ -119,8 +117,6 @@
     <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Roleid" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Role" Relationship="KR2_ShershunovModel.FK_User_Role1" FromRole="User" ToRole="Role" />
     <NavigationProperty Name="Zakaz" Relationship="KR2_ShershunovModel.FK_Zakaz_User" FromRole="User" ToRole="Zakaz" />
   </EntityType>
   <EntityType Name="Zadachi">
@@ -218,18 +214,6 @@
       </Principal>
       <Dependent Role="Sotrudniki">
         <PropertyRef Name="id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_User_Role1">
-    <End Type="KR2_ShershunovModel.Role" Role="Role" Multiplicity="1" />
-    <End Type="KR2_ShershunovModel.User" Role="User" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Role">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="User">
-        <PropertyRef Name="Roleid" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

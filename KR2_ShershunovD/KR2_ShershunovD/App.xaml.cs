@@ -15,6 +15,6 @@ namespace KR2_ShershunovD
     public partial class App : Application
     {
         public static KR2_ShershunovEntities DB = new KR2_ShershunovEntities();
-        public static User LoggedUser;
+        public static Sotrudniki LoggedUser;
     }
 }

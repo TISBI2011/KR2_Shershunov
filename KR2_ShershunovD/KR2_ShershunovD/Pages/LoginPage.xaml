@@ -15,7 +15,6 @@
             <TextBlock Text="Пароль"/>
             <TextBox x:Name="TBPassword"/>
             <Button x:Name="BLogin" Content="Войти" Click="BLogin_Click"/>
-            <Button x:Name="BRegistration" Content="Зарегистрироваться" Click="BRegistration_Click"/>
         </StackPanel>
     </Grid>
 </Page>
