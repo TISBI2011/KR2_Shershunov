@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cb0fbb91265546ac9eea9a40df4cf3ae" Name="Diagram1">
+        <EntityTypeShape EntityType="KR2_ShershunovModel.Client" Width="1.5" PointX="3" PointY="11.375" />
+        <EntityTypeShape EntityType="KR2_ShershunovModel.ClientZakaz" Width="1.5" PointX="7.5" PointY="7.25" />
+        <EntityTypeShape EntityType="KR2_ShershunovModel.Otdel" Width="1.5" PointX="7.5" PointY="10.875" />
+        <EntityTypeShape EntityType="KR2_ShershunovModel.Role" Width="1.5" PointX="0.75" PointY="4.625" />
+        <EntityTypeShape EntityType="KR2_ShershunovModel.Sotrudniki" Width="1.5" PointX="3" PointY="4.125" />
+        <EntityTypeShape EntityType="KR2_ShershunovModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KR2_ShershunovModel.User" Width="1.5" PointX="3" PointY="8" />
+        <EntityTypeShape EntityType="KR2_ShershunovModel.Zadachi" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="KR2_ShershunovModel.Zakaz" Width="1.5" PointX="5.25" PointY="7.625" />
+        <AssociationConnector Association="KR2_ShershunovModel.FK_ClientZakaz_Client" />
+        <AssociationConnector Association="KR2_ShershunovModel.FK_Zakaz_Client" />
+        <AssociationConnector Association="KR2_ShershunovModel.FK_ClientZakaz_Zakaz" />
+        <AssociationConnector Association="KR2_ShershunovModel.FK_Otdel_Zakaz1" />
+        <AssociationConnector Association="KR2_ShershunovModel.FK_Sotrudniki_Otdel" />
+        <AssociationConnector Association="KR2_ShershunovModel.FK_Sotrudniki_Role" />
+        <AssociationConnector Association="KR2_ShershunovModel.FK_User_Role1" />
+        <AssociationConnector Association="KR2_ShershunovModel.FK_Sotrudniki_Zadachi" />
+        <AssociationConnector Association="KR2_ShershunovModel.FK_Zakaz_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

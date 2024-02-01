@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KR2_ShershunovModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="KR2_ShershunovEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Client" EntityType="KR2_ShershunovModel.Client" />
+    <EntitySet Name="ClientZakaz" EntityType="KR2_ShershunovModel.ClientZakaz" />
+    <EntitySet Name="Otdel" EntityType="KR2_ShershunovModel.Otdel" />
+    <EntitySet Name="Role" EntityType="KR2_ShershunovModel.Role" />
+    <EntitySet Name="Sotrudniki" EntityType="KR2_ShershunovModel.Sotrudniki" />
+    <EntitySet Name="sysdiagrams" EntityType="KR2_ShershunovModel.sysdiagrams" />
+    <EntitySet Name="User" EntityType="KR2_ShershunovModel.User" />
+    <EntitySet Name="Zadachi" EntityType="KR2_ShershunovModel.Zadachi" />
+    <EntitySet Name="Zakaz" EntityType="KR2_ShershunovModel.Zakaz" />
+    <AssociationSet Name="FK_ClientZakaz_Client" Association="KR2_ShershunovModel.FK_ClientZakaz_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="ClientZakaz" EntitySet="ClientZakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zakaz_Client" Association="KR2_ShershunovModel.FK_Zakaz_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Zakaz" EntitySet="Zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientZakaz_Zakaz" Association="KR2_ShershunovModel.FK_ClientZakaz_Zakaz">
+      <End Role="Zakaz" EntitySet="Zakaz" />
+      <End Role="ClientZakaz" EntitySet="ClientZakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Otdel_Zakaz1" Association="KR2_ShershunovModel.FK_Otdel_Zakaz1">
+      <End Role="Zakaz" EntitySet="Zakaz" />
+      <End Role="Otdel" EntitySet="Otdel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sotrudniki_Otdel" Association="KR2_ShershunovModel.FK_Sotrudniki_Otdel">
+      <End Role="Otdel" EntitySet="Otdel" />
+      <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sotrudniki_Role" Association="KR2_ShershunovModel.FK_Sotrudniki_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role1" Association="KR2_ShershunovModel.FK_User_Role1">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sotrudniki_Zadachi" Association="KR2_ShershunovModel.FK_Sotrudniki_Zadachi">
+      <End Role="Zadachi" EntitySet="Zadachi" />
+      <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zakaz_User" Association="KR2_ShershunovModel.FK_Zakaz_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Zakaz" EntitySet="Zakaz" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ClientZakaz" Relationship="KR2_ShershunovModel.FK_ClientZakaz_Client" FromRole="Client" ToRole="ClientZakaz" />
+    <NavigationProperty Name="Zakaz" Relationship="KR2_ShershunovModel.FK_Zakaz_Client" FromRole="Client" ToRole="Zakaz" />
+  </EntityType>
+  <EntityType Name="ClientZakaz">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="idClienta" Type="Int32" />
+    <Property Name="idZakaza" Type="Int32" />
+    <NavigationProperty Name="Client" Relationship="KR2_ShershunovModel.FK_ClientZakaz_Client" FromRole="ClientZakaz" ToRole="Client" />
+    <NavigationProperty Name="Zakaz" Relationship="KR2_ShershunovModel.FK_ClientZakaz_Zakaz" FromRole="ClientZakaz" ToRole="Zakaz" />
+  </EntityType>
+  <EntityType Name="Otdel">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="idSotrudnik" Type="Int32" />
+    <Property Name="idZakaz" Type="Int32" />
+    <NavigationProperty Name="Zakaz" Relationship="KR2_ShershunovModel.FK_Otdel_Zakaz1" FromRole="Otdel" ToRole="Zakaz" />
+    <NavigationProperty Name="Sotrudniki" Relationship="KR2_ShershunovModel.FK_Sotrudniki_Otdel" FromRole="Otdel" ToRole="Sotrudniki" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Sotrudniki" Relationship="KR2_ShershunovModel.FK_Sotrudniki_Role" FromRole="Role" ToRole="Sotrudniki" />
+    <NavigationProperty Name="User" Relationship="KR2_ShershunovModel.FK_User_Role1" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Sotrudniki">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="FIO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Addres" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Passport" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="idOtdela" Type="Int32" Nullable="false" />
+    <Property Name="Stavka" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Otdel" Relationship="KR2_ShershunovModel.FK_Sotrudniki_Otdel" FromRole="Sotrudniki" ToRole="Otdel" />
+    <NavigationProperty Name="Role" Relationship="KR2_ShershunovModel.FK_Sotrudniki_Role" FromRole="Sotrudniki" ToRole="Role" />
+    <NavigationProperty Name="Zadachi" Relationship="KR2_ShershunovModel.FK_Sotrudniki_Zadachi" FromRole="Sotrudniki" ToRole="Zadachi" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Roleid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="KR2_ShershunovModel.FK_User_Role1" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Zakaz" Relationship="KR2_ShershunovModel.FK_Zakaz_User" FromRole="User" ToRole="Zakaz" />
+  </EntityType>
+  <EntityType Name="Zadachi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Soderjanie" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="idOtdela" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Sotrudniki" Relationship="KR2_ShershunovModel.FK_Sotrudniki_Zadachi" FromRole="Zadachi" ToRole="Sotrudniki" />
+  </EntityType>
+  <EntityType Name="Zakaz">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Soderjanie" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Trebovanie" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Platforma" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Otdel" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Dedlain" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Client" Relationship="KR2_ShershunovModel.FK_Zakaz_Client" FromRole="Zakaz" ToRole="Client" />
+    <NavigationProperty Name="ClientZakaz" Relationship="KR2_ShershunovModel.FK_ClientZakaz_Zakaz" FromRole="Zakaz" ToRole="ClientZakaz" />
+    <NavigationProperty Name="Otdel1" Relationship="KR2_ShershunovModel.FK_Otdel_Zakaz1" FromRole="Zakaz" ToRole="Otdel" />
+    <NavigationProperty Name="User" Relationship="KR2_ShershunovModel.FK_Zakaz_User" FromRole="Zakaz" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_ClientZakaz_Client">
+    <End Type="KR2_ShershunovModel.Client" Role="Client" Multiplicity="0..1" />
+    <End Type="KR2_ShershunovModel.ClientZakaz" Role="ClientZakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ClientZakaz">
+        <PropertyRef Name="idClienta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zakaz_Client">
+    <End Type="KR2_ShershunovModel.Client" Role="Client" Multiplicity="1" />
+    <End Type="KR2_ShershunovModel.Zakaz" Role="Zakaz" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Zakaz">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientZakaz_Zakaz">
+    <End Type="KR2_ShershunovModel.Zakaz" Role="Zakaz" Multiplicity="0..1" />
+    <End Type="KR2_ShershunovModel.ClientZakaz" Role="ClientZakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zakaz">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ClientZakaz">
+        <PropertyRef Name="idZakaza" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Otdel_Zakaz1">
+    <End Type="KR2_ShershunovModel.Zakaz" Role="Zakaz" Multiplicity="0..1" />
+    <End Type="KR2_ShershunovModel.Otdel" Role="Otdel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zakaz">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Otdel">
+        <PropertyRef Name="idZakaz" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sotrudniki_Otdel">
+    <End Type="KR2_ShershunovModel.Otdel" Role="Otdel" Multiplicity="1" />
+    <End Type="KR2_ShershunovModel.Sotrudniki" Role="Sotrudniki" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Otdel">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Sotrudniki">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sotrudniki_Role">
+    <End Type="KR2_ShershunovModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="KR2_ShershunovModel.Sotrudniki" Role="Sotrudniki" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Sotrudniki">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role1">
+    <End Type="KR2_ShershunovModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="KR2_ShershunovModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Roleid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sotrudniki_Zadachi">
+    <End Type="KR2_ShershunovModel.Zadachi" Role="Zadachi" Multiplicity="1" />
+    <End Type="KR2_ShershunovModel.Sotrudniki" Role="Sotrudniki" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Zadachi">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Sotrudniki">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zakaz_User">
+    <End Type="KR2_ShershunovModel.User" Role="User" Multiplicity="1" />
+    <End Type="KR2_ShershunovModel.Zakaz" Role="Zakaz" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Zakaz">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

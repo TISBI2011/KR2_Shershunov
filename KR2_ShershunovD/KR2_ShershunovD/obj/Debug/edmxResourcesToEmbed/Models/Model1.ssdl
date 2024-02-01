@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище KR2_ShershunovModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClientZakaz">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="idClienta" Type="int" />
+    <Property Name="idZakaza" Type="int" />
+  </EntityType>
+  <EntityType Name="Otdel">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="idSotrudnik" Type="int" />
+    <Property Name="idZakaz" Type="int" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sotrudniki">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="FIO" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Addres" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Passport" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="idOtdela" Type="int" Nullable="false" />
+    <Property Name="Stavka" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Roleid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Zadachi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Soderjanie" Type="nvarchar" MaxLength="150" />
+    <Property Name="idOtdela" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Zakaz">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Soderjanie" Type="nvarchar" MaxLength="150" />
+    <Property Name="Trebovanie" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Platforma" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Otdel" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Dedlain" Type="date" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ClientZakaz_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="ClientZakaz" Type="Self.ClientZakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ClientZakaz">
+        <PropertyRef Name="idClienta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientZakaz_Zakaz">
+    <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="0..1" />
+    <End Role="ClientZakaz" Type="Self.ClientZakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zakaz">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ClientZakaz">
+        <PropertyRef Name="idZakaza" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Otdel_Zakaz1">
+    <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="0..1" />
+    <End Role="Otdel" Type="Self.Otdel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zakaz">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Otdel">
+        <PropertyRef Name="idZakaz" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sotrudniki_Otdel">
+    <End Role="Otdel" Type="Self.Otdel" Multiplicity="1" />
+    <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Otdel">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Sotrudniki">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sotrudniki_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Sotrudniki">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sotrudniki_Zadachi">
+    <End Role="Zadachi" Type="Self.Zadachi" Multiplicity="1" />
+    <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Zadachi">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Sotrudniki">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role1">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Roleid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zakaz_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Zakaz">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zakaz_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Zakaz">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище KR2_ShershunovModelContainer">
+    <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClientZakaz" EntityType="Self.ClientZakaz" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Otdel" EntityType="Self.Otdel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sotrudniki" EntityType="Self.Sotrudniki" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Zadachi" EntityType="Self.Zadachi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Zakaz" EntityType="Self.Zakaz" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ClientZakaz_Client" Association="Self.FK_ClientZakaz_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="ClientZakaz" EntitySet="ClientZakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientZakaz_Zakaz" Association="Self.FK_ClientZakaz_Zakaz">
+      <End Role="Zakaz" EntitySet="Zakaz" />
+      <End Role="ClientZakaz" EntitySet="ClientZakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Otdel_Zakaz1" Association="Self.FK_Otdel_Zakaz1">
+      <End Role="Zakaz" EntitySet="Zakaz" />
+      <End Role="Otdel" EntitySet="Otdel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sotrudniki_Otdel" Association="Self.FK_Sotrudniki_Otdel">
+      <End Role="Otdel" EntitySet="Otdel" />
+      <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sotrudniki_Role" Association="Self.FK_Sotrudniki_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sotrudniki_Zadachi" Association="Self.FK_Sotrudniki_Zadachi">
+      <End Role="Zadachi" EntitySet="Zadachi" />
+      <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role1" Association="Self.FK_User_Role1">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zakaz_Client" Association="Self.FK_Zakaz_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Zakaz" EntitySet="Zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zakaz_User" Association="Self.FK_Zakaz_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Zakaz" EntitySet="Zakaz" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
